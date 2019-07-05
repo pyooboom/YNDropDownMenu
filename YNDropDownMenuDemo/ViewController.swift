@@ -13,27 +13,24 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let ZBdropDownViews = Bundle.main.loadNibNamed("DropDownViews", owner: nil, options: nil) as? [UIView]
+        var ZBdropDownViews = Bundle.main.loadNibNamed("DropDownViews", owner: nil, options: nil) as? [UIView]
+        ZBdropDownViews?.insert(CustomDropDownView(frame: CGRect(x: 0, y: 10000000, width: 100, height: 300)), at: 0)
         let FFA409 = UIColor.init(red: 255/255, green: 164/255, blue: 9/255, alpha: 1.0)
 
         if let _ZBdropDownViews = ZBdropDownViews {
+            
             // Inherit YNDropDownView if you want to hideMenu in your dropDownViews
-            let view = YNDropDownMenu(frame: CGRect(x: 0, y: 64, width: UIScreen.main.bounds.size.width, height: 38), dropDownViews: _ZBdropDownViews, dropDownViewTitles: ["Apple", "Banana", "Kiwi", "Pear"])
+            let view = YNDropDownMenu(frame: CGRect(x: 0, y: 88, width: UIScreen.main.bounds.size.width, height: 38), dropDownViews: Array(_ZBdropDownViews[0...1]), dropDownViewTitles: ["金银", "财宝"])
+
+            let normalImages = [UIImage(named: "arrow_nor"),
+                                UIImage(named: "arrow_nor")]
             
-            let normalImages = [UIImage(named: "HOME_BOX_NORMAL"),
-                                UIImage(named: "HOME_COLOR_NORMAL"),
-                                UIImage(named: "HOME_DESIGN_NORMAL"),
-                                UIImage(named: "HOME_CONCEPT_NORMAL")]
+            let selectedImages = [imageMaskingwithColor(hexStringToUIColor(hex: "FFA409"), image: UIImage(named: "arrow_nor")),
+                                  imageMaskingwithColor(hexStringToUIColor(hex: "FFA409"), image: UIImage(named: "arrow_nor"))]
             
-            let selectedImages = [imageMaskingwithColor(hexStringToUIColor(hex: "FFA409"), image: UIImage(named: "HOME_BOX_NORMAL")),
-                                  imageMaskingwithColor(hexStringToUIColor(hex: "FFA409"), image: UIImage(named: "HOME_COLOR_NORMAL")),
-                                  imageMaskingwithColor(hexStringToUIColor(hex: "FFA409"), image: UIImage(named: "HOME_DESIGN_NORMAL")),
-                                  imageMaskingwithColor(hexStringToUIColor(hex: "FFA409"), image: UIImage(named: "HOME_CONCEPT_NORMAL"))]
+            let disabledImages = [imageMaskingwithColor(hexStringToUIColor(hex: "D3D3D3"), image: UIImage(named: "arrow_nor")),
+                                  imageMaskingwithColor(hexStringToUIColor(hex: "D3D3D3"), image: UIImage(named: "arrow_nor"))]
             
-            let disabledImages = [imageMaskingwithColor(hexStringToUIColor(hex: "D3D3D3"), image: UIImage(named: "HOME_BOX_NORMAL")),
-                                  imageMaskingwithColor(hexStringToUIColor(hex: "D3D3D3"), image: UIImage(named: "HOME_COLOR_NORMAL")),
-                                  imageMaskingwithColor(hexStringToUIColor(hex: "D3D3D3"), image: UIImage(named: "HOME_DESIGN_NORMAL")),
-                                  imageMaskingwithColor(hexStringToUIColor(hex: "D3D3D3"), image: UIImage(named: "HOME_CONCEPT_NORMAL"))]
             view.setStatesImages(normalImages: normalImages, selectedImages: selectedImages, disabledImages: disabledImages)
             
             view.setLabelColorWhen(normal: .black, selected: FFA409, disabled: .gray)
@@ -46,25 +43,23 @@ class ViewController: UIViewController {
             //            view.bottomLine.backgroundColor = UIColor.black
             view.bottomLine.isHidden = false
             // Add custom blurEffectView
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = .black
-            view.blurEffectView = backgroundView
-            view.blurEffectViewAlpha = 0.7
+            view.blurEffectView = {
+                let view = UIView()
+                view.backgroundColor = UIColor.clear
+                return view
+            }()
+//            view.blurEffectViewAlpha = 0.7
             
+            self.view.addSubview(view)
             // Open and Hide Menu
-//            view.alwaysSelected(at: 0)
-            //            view.disabledMenuAt(index: 2)
-            //view.showAndHideMenuAt(index: 3)
-            
+            view.alwaysSelected(at: 0)
+//            view.disabledMenuAt(index: 1)
+
+            view.showAndHideMenu(at: 0)
+
             view.setBackgroundColor(color: UIColor.white)
 
-            self.view.addSubview(view)
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     /// Convert String-type hex color codes into UIColor.
@@ -121,3 +116,17 @@ class ViewController: UIViewController {
     }
 }
 
+
+
+class ContactModel {
+    let name: String
+    let phone: String
+    init(name: String, phone: String) {
+        self.name = name
+        self.phone = phone
+    }
+    
+    @objc func demoFunc() -> String {
+        return name
+    }
+}

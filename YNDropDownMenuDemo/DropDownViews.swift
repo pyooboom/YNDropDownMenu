@@ -9,6 +9,27 @@
 import UIKit
 import YNDropDownMenu
 
+class CustomDropDownView: YNDropDownView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = UIColor.orange.withAlphaComponent(0.6)
+    }
+
+   required override init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+    override func dropDownViewClosed() {
+        super.dropDownViewClosed()
+        print("Closed")
+    }
+
+    override func dropDownViewOpened() {
+        super.dropDownViewOpened()
+        print("Opened")
+    }
+}
+
 class ZBFilterMemeView: YNDropDownView {
     @IBOutlet var tradeTypeSegmentControl: UISegmentedControl!
     
@@ -24,13 +45,13 @@ class ZBFilterMemeView: YNDropDownView {
         self.initViews()
     }
     @IBAction func confirmButtonClicked(_ sender: Any) {
-        self.normalSelected(at: 1)
+//        self.normalSelected(at: 1)
         self.hideMenu()
     }
     @IBAction func cancelButtonClicked(_ sender: Any) {
 //        self.changeMenu(title: "Changed", at: 1)
 //        self.changeMenu(title: "Changed", status: .selected, at: 0)
-        self.alwaysSelected(at: 1)
+//        self.alwaysSelected(at: 1)
 //        self.alwaysSelected(at: 2)
 //        self.alwaysSelected(at: 3)
         self.hideMenu()
@@ -71,8 +92,8 @@ class ZBFilterSalesPriceVIew: YNDropDownView {
     }
     
     @IBAction func cancelButtonClicked(_ sender: Any) {
-        let ZBdropDownViews = Bundle.main.loadNibNamed("DropDownViews", owner: nil, options: nil) as? [UIView]
-        self.changeView(view: (ZBdropDownViews?[0])!, at: 3)
+//        let ZBdropDownViews = Bundle.main.loadNibNamed("DropDownViews", owner: nil, options: nil) as? [UIView]
+//        self.changeView(view: (ZBdropDownViews?[0])!, at: 3)
         self.hideMenu()
     }
     
