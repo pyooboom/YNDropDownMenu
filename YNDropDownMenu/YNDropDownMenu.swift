@@ -586,7 +586,8 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         self.blurEffectView = UIVisualEffectView(effect: blurEffect)
         self.blurEffectView?.alpha = 0
         
-        self.blurEffectView?.frame = CGRect(x: self.frame.origin.x, y: 0, width: self.frame.width, height: 0)
+        let origin = UIApplication.shared.keyWindow!.convert(CGPoint(x: self.frame.origin.x, y: self.frame.maxY), from: self)
+        self.blurEffectView?.frame = CGRect(origin: origin, size: CGSize(width: self.frame.width, height: UIScreen.main.bounds.size.height - origin.y))
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(blurEffectViewClicked(_:)))
         self.blurEffectView?.addGestureRecognizer(tapGesture)
         
@@ -606,9 +607,10 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
                 _dropDownView.frame.origin.y = CGFloat(menuHeight)
             }
         }
-        let originY = self.frame.origin.y + menuHeight + 5
+        
         self.bottomLine.frame = CGRect(x: 0, y: CGFloat(menuHeight) - 0.5, width: self.frame.width, height: 0.5)
-        self.blurEffectView?.frame = CGRect(x: self.frame.origin.x, y: originY, width: self.frame.width, height: UIScreen.main.bounds.size.height - originY)
+        let origin = UIApplication.shared.keyWindow!.convert(CGPoint(x: self.frame.origin.x, y: self.frame.maxY), from: self)
+        self.blurEffectView?.frame = CGRect(origin: origin, size: CGSize(width: self.frame.width, height: UIScreen.main.bounds.size.height - origin.y))
     }
     
     override open func layoutSubviews() {
