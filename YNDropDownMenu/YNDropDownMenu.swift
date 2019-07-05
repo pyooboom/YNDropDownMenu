@@ -479,7 +479,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
             
             if let rootView = UIApplication.shared.keyWindow?.rootViewController?.view {
                 
-                let origin = rootView.convert(CGPoint.zero, from: self)
+                let origin = rootView.convert(CGPoint(x: self.frame.origin.x, y: self.frame.maxY), from: self)
                 _blurEffectView.frame = CGRect(origin: origin, size: _blurEffectView.bounds.size)
                 rootView.addSubview(_blurEffectView)
             }
