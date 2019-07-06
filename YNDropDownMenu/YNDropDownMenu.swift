@@ -484,13 +484,13 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
                 rootView.addSubview(_blurEffectView)
             }
         }
-        UIView.animate(
-            withDuration: self.showMenuDuration,
-            delay: 0,
-            usingSpringWithDamping: self.showMenuSpringWithDamping,
-            initialSpringVelocity: self.showMenuSpringVelocity,
-            options: [],
-            animations: {
+//        UIView.animate(
+//            withDuration: self.showMenuDuration,
+//            delay: 0,
+//            usingSpringWithDamping: self.showMenuSpringWithDamping,
+//            initialSpringVelocity: self.showMenuSpringVelocity,
+//            options: [],
+//            animations: {
                 dropDownView.frame.origin.y = CGFloat(self.menuHeight)
                 if self.backgroundBlurEnabled {
                     self.blurEffectView?.alpha = self.blurEffectViewAlpha
@@ -502,9 +502,9 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
                 yNDropDownButton.buttonLabel.textColor = self.buttonlabelFontColors?.selected
                 yNDropDownButton.buttonLabel.font = self.buttonlabelFonts?.selected
                 
-        }, completion: { _ in
+//        }, completion: { _ in
             didComplete?()
-        })
+//        })
     }
     
     internal func hideMenu(yNDropDownButton: YNDropDownButton?, buttonImageView: UIImageView?, dropDownView: UIView?, didComplete: (()-> Void)?) {
@@ -514,13 +514,13 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         
         (dropDownView as? YNDropDownView)?.dropDownViewClosed()
         
-        UIView.animate(
-            withDuration: self.hideMenuDuration,
-            delay: 0,
-            usingSpringWithDamping: self.hideMenuSpringWithDamping,
-            initialSpringVelocity: self.hideMenuSpringVelocity,
-            options: [],
-            animations: {
+//        UIView.animate(
+//            withDuration: self.hideMenuDuration,
+//            delay: 0,
+//            usingSpringWithDamping: self.hideMenuSpringWithDamping,
+//            initialSpringVelocity: self.hideMenuSpringVelocity,
+//            options: [],
+//            animations: {
                 dropDownView.frame.origin.y = CGFloat(self.menuHeight)
                 if self.backgroundBlurEnabled {
                     self.blurEffectView?.alpha = 0
@@ -537,13 +537,13 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
                     yNDropDownButton.buttonLabel.font = self.buttonlabelFonts?.normal
                 }
                 
-        }, completion: { _ in
+//        }, completion: { _ in
             if self.backgroundBlurEnabled {
                 self.blurEffectView?.removeFromSuperview()
                 dropDownView.isHidden = true
             }
             didComplete?()
-        })
+//        })
     }
     
     
