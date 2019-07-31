@@ -10,7 +10,8 @@ import UIKit
 class YNDropDownButton: UIButton {
     internal var centerXwithOffsetConstraint: NSLayoutConstraint!
     internal var centerYConstraint: NSLayoutConstraint!
-
+    internal var widthConstraint: NSLayoutConstraint!
+    
     open var buttonImageView: UIImageView!
     
     open var buttonLabel: UILabel!
@@ -110,21 +111,25 @@ class YNDropDownButton: UIButton {
         self.addSubview(buttonImageView)
         
         self.addConstraints([buttonImageViewXContraint,buttonImageViewYConstraint,buttonImageViewHeight,buttonImageViewWidth])
+        
+        buttonLabel.preferredMaxLayoutWidth = 40
     }
     
     private func initView() {
         self.backgroundColor = UIColor.white
         
         self.buttonLabel = UILabel()
+        buttonLabel.preferredMaxLayoutWidth = 40
         self.buttonLabel.text = self.buttonLabelText
         self.buttonLabel.font = UIFont.systemFont(ofSize: 12)
         self.buttonLabel.translatesAutoresizingMaskIntoConstraints = false
-        
+        self.buttonLabel.lineBreakMode = .byTruncatingMiddle
         self.addSubview(self.buttonLabel)
         
         centerXwithOffsetConstraint = NSLayoutConstraint(item: buttonLabel as Any, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0)
         centerYConstraint = NSLayoutConstraint(item: buttonLabel as Any, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0)
+        widthConstraint = NSLayoutConstraint(item: buttonLabel as Any, attribute: .width, relatedBy: .lessThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 100)
         
-        self.addConstraints([centerXwithOffsetConstraint,centerYConstraint])
+        self.addConstraints([centerXwithOffsetConstraint,centerYConstraint, widthConstraint])
     }
 }

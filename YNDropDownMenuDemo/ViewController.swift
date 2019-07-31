@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         if let _ZBdropDownViews = ZBdropDownViews {
             
             // Inherit YNDropDownView if you want to hideMenu in your dropDownViews
-            let view = YNDropDownMenu(frame: CGRect(x: 0, y: 88, width: UIScreen.main.bounds.size.width, height: 38), dropDownViews: Array(_ZBdropDownViews[0...1]), dropDownViewTitles: ["金银", "财宝"])
+            let view = YNDropDownMenu(frame: CGRect(x: 0, y: 88, width: UIScreen.main.bounds.size.width, height: 38), dropDownViews: Array(_ZBdropDownViews[0...1]), dropDownViewTitles: ["金银", "财宝财宝财宝财宝财宝财宝财宝财宝财宝"])
 
             let normalImages = [UIImage(named: "arrow_nor"),
                                 UIImage(named: "arrow_nor")]
