@@ -107,7 +107,7 @@ class YNDropDownButton: UIButton {
         
         let buttonImageViewHeight = NSLayoutConstraint(item: buttonImageView as Any, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: _buttonImage.size.height)
         let buttonImageViewWidth = NSLayoutConstraint(item: buttonImageView as Any, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: _buttonImage.size.width)
-        widthConstraint = NSLayoutConstraint(item: buttonLabel as Any, attribute: .width, relatedBy: .lessThanOrEqual, toItem: self, attribute: .width, multiplier: 1.0, constant: -_buttonImage.size.width - 5 )
+        widthConstraint = NSLayoutConstraint(item: buttonLabel as Any, attribute: .width, relatedBy: .lessThanOrEqual, toItem: self, attribute: .width, multiplier: 1.0, constant: -_buttonImage.size.width - 10)
         
         self.addSubview(buttonImageView)
         
